@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5237784810724087536}
   m_Layer: 0
   m_Name: Minecart
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,8 +142,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9318018, y: 2.066391, z: 2.2252493}
-  m_Center: {x: 5.682336, y: 1.5072565, z: 0.086601496}
+  m_Size: {x: 2.9807973, y: 2.066391, z: 2.2252493}
+  m_Center: {x: 6.206833, y: 1.5072565, z: 0.086601496}
 --- !u!114 &5237784810724087536
 MonoBehaviour:
   m_ObjectHideFlags: 0
