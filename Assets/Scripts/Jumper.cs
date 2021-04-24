@@ -7,7 +7,6 @@ public class Jumper : MonoBehaviour
 {
     [SerializeField] float jumpSpeed = 2f;
 
-    private bool canJump = false;
     private Rigidbody rigidBody;
     [SerializeField] private bool isGrounded = false;
 
