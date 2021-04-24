@@ -9,8 +9,11 @@ public class Jumper : MonoBehaviour
 
     private bool canJump = false;
     private Rigidbody rigidBody;
+    [SerializeField] private bool isGrounded = false;
 
-    void Start()
+    float distanceToGround;
+
+   void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
     }
@@ -20,9 +23,25 @@ public class Jumper : MonoBehaviour
         Jump();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
     private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Vector3 jumpVelocityToAdd = new Vector3(0f, jumpSpeed, 0f);
             rigidBody.velocity += jumpVelocityToAdd;
