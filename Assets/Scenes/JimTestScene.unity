@@ -213,7 +213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 33.926, y: -85.072, z: 0.02}
 --- !u!1 &373194055
 GameObject:
@@ -385,7 +385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040006292
 GameObject:
@@ -588,6 +588,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 589ee955d30f59a489aa747e30e5a716, type: 3}
+--- !u!1001 &2058506456
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.08
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
+      propertyPath: m_Name
+      value: TNT_box
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8112b0380b471cf409d07d6d26ab53a6, type: 3}
 --- !u!1 &2088605739
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c90cde48d53e4b8b7b277ca9766e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 0.05
+  cameraSpeed: 0
   dollyXPos: 0
 --- !u!114 &2088605741
 MonoBehaviour:
@@ -668,7 +725,7 @@ Transform:
   m_Children:
   - {fileID: 1040006293}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -13.514}
 --- !u!1001 &1721712209806083128
 PrefabInstance:
@@ -744,7 +801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5237784810724087538, guid: 7a7d8875fa7187d45bb9fde5e5cc1b07, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 5237784810724087539, guid: 7a7d8875fa7187d45bb9fde5e5cc1b07, type: 3}
       propertyPath: m_Size.x
