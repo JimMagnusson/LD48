@@ -64,13 +64,11 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraMovement_GoFaster()
     {
-        Debug.Log("Go fast");
         cameraSpeed = cameraFastSpeed;
     }
 
     private void CameraMovement_GoSlower()
     {
-        Debug.Log("Go slow");
         cameraSpeed = cameraSlowSpeed;
     }
 
