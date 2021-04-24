@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSpeed = 1f;
+    public float cameraSlowSpeed = 0.1f;
+    public float cameraFastSpeed = 0.5f;
+
     public float dollyXPos = 0f;
 
     private const float SEGMENT_LENGTH = 23.937f;
 
+    private float cameraSpeed;
     private CinemachineVirtualCamera currentCamera;
     private CinemachineTrackedDolly dolly;
-
     private int currentSegmentIndex = 1;
 
     private bool isMoving = true;
-    private const float DOLLY_AT_END_DIFF = 0.1f;
+    private const float DOLLY_AT_END_DIFF = 0.05f;
+    private float dollyCurrentYPos;
+    [SerializeField] GameObject goFasterColliderGO = null;
+    [SerializeField] GameObject goSlowerColliderGO = null;
+    private float startFasterColliderY = 0f;
+    private float startSlowerColliderY = 0f;
 
     /*
     * Adds a waypoint to the DollyTrack with SEGMENT_LENGTH below the last one (y-axis).
@@ -43,6 +51,27 @@ public class CameraMovement : MonoBehaviour
     {
         currentCamera = GetComponent<CinemachineVirtualCamera>();
         dolly = currentCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+
+        // Subscribe to events
+        goSlowerColliderGO.GetComponent<SetSpeedOnTrigger>().SetSpeed += CameraMovement_GoSlower;
+        goFasterColliderGO.GetComponent<SetSpeedOnTrigger>().SetSpeed += CameraMovement_GoFaster;
+
+        startSlowerColliderY = goSlowerColliderGO.transform.position.y;
+        startFasterColliderY = goFasterColliderGO.transform.position.y;
+
+        cameraSpeed = cameraSlowSpeed;
+    }
+
+    private void CameraMovement_GoFaster()
+    {
+        Debug.Log("Go fast");
+        cameraSpeed = cameraFastSpeed;
+    }
+
+    private void CameraMovement_GoSlower()
+    {
+        Debug.Log("Go slow");
+        cameraSpeed = cameraSlowSpeed;
     }
 
     void Update()
@@ -51,15 +80,31 @@ public class CameraMovement : MonoBehaviour
         {
             dolly.m_PathPosition += cameraSpeed * Time.deltaTime;
         }
-        CheckMovement(); // Perhaps unneccessary since the game should end when player hits the top frame of the camera.
+        CheckMovement();
+        dollyCurrentYPos = dolly.m_PathPosition * SEGMENT_LENGTH;
+        MoveColliders();
+    }
 
-        //float cameraPosition = dolly.m_Path
-        //Debug.Log("Dolly position: " + dolly.m_PathPosition);
-        //Debug.Log("Convert pos: " + dolly.m_PositionUnits);
+    private void MoveColliders()
+    {
+        if(goFasterColliderGO == null || goSlowerColliderGO == null)
+        {
+            Debug.Log("Either goFasterCollider or goSlowerCollider is null. You need to assign them from the scene.");
+        }
+
+        Vector3 goFasterNewPos = new Vector3(goFasterColliderGO.transform.position.x,
+                                             startFasterColliderY - dollyCurrentYPos,
+                                             goFasterColliderGO.transform.position.z);
+        goFasterColliderGO.transform.position = goFasterNewPos;
+
+        Vector3 goSlowerNewPos = new Vector3(goSlowerColliderGO.transform.position.x,
+                                             startSlowerColliderY - dollyCurrentYPos,
+                                             goSlowerColliderGO.transform.position.z);
+        goSlowerColliderGO.transform.position = goSlowerNewPos;
     }
 
     /*
-     * Stops the movement if the dolly has reached its 
+     * Stops the movement if the dolly has reached its end. Perhaps unneccessary since the game should end when player hits the top frame of the camera.
      */
     private void CheckMovement()
     {
