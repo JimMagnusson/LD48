@@ -28,8 +28,11 @@ public class CameraMovement : MonoBehaviour
     private float dollyCurrentYPos;
     [SerializeField] GameObject goFasterColliderGO = null;
     [SerializeField] GameObject goSlowerColliderGO = null;
+    [SerializeField] GameObject loseColliderGO = null;
+
     private float startFasterColliderY = 0f;
     private float startSlowerColliderY = 0f;
+    private float startLoseColliderY = 0f;
 
     /*
     * Adds a waypoint to the DollyTrack with SEGMENT_LENGTH below the last one (y-axis).
@@ -65,6 +68,7 @@ public class CameraMovement : MonoBehaviour
 
         startSlowerColliderY = goSlowerColliderGO.transform.position.y;
         startFasterColliderY = goFasterColliderGO.transform.position.y;
+        startLoseColliderY = loseColliderGO.transform.position.y;
 
         cameraSpeed = cameraSlowSpeed;
     }
@@ -121,6 +125,11 @@ public class CameraMovement : MonoBehaviour
                                              startSlowerColliderY - dollyCurrentYPos,
                                              goSlowerColliderGO.transform.position.z);
         goSlowerColliderGO.transform.position = goSlowerNewPos;
+
+        Vector3 loseNewPos = new Vector3(loseColliderGO.transform.position.x,
+                                     startLoseColliderY - dollyCurrentYPos,
+                                     loseColliderGO.transform.position.z);
+        loseColliderGO.transform.position = loseNewPos;
     }
 
     /*

@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
             }
         }
         else if (other.gameObject.CompareTag("Deadly")) {
-            Die();
+            Lose();
         }
     }
 
@@ -69,8 +69,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Lose()
     {
+        Debug.Log("You have lost");
         CanMoveRight = false;
         CanMoveLeft = false;
         canJump = false;
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canJump)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded && canJump)
         {
             Vector3 jumpVelocityToAdd = new Vector3(0f, jumpSpeed, 0f);
             rigidBody.velocity += jumpVelocityToAdd;
