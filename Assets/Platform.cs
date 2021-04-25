@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private int wallWidth = 30;
     [SerializeField] private int rocksWidth = 30;
     [SerializeField] private int dynamiteWidth = 30;
-    [SerializeField] private int placementTries = 100;
+    [SerializeField] private int maxPlacementTries = 100;
 
     [SerializeField] private int DEGREES_IN_CIRCLE = 360;
 
@@ -39,7 +39,7 @@ public class Platform : MonoBehaviour
     private List<ObstacleType> placeableObstacles;
     private ObstacleType objectToPlace;
 
-    private bool canPlaceObject = true;
+    private List<int> anglesToRemove = new List<int>();
 
 
     void Start()
@@ -52,28 +52,88 @@ public class Platform : MonoBehaviour
         for(int i = 0; i < numberOfObstaclesToPlace; i++)
         {
             SelectObjectToPlace();
-            CheckIfObstacleCanBePlaced();
+            if(CheckIfObstacleCanBePlaced())
+            {
+                Debug.Log("Object " + i + " can be placed");
+                // Remove from valid angles
+
+                // Place the object at the right position.
+            }
+            else
+            {
+                Debug.Log("Can't place object " + i);
+            }
         }
     }
 
-    private void CheckIfObstacleCanBePlaced()
+    /*
+     * Returns true if the object can be placed. If true, the section to be removed is stored in anglesToRemove;
+     */
+    private bool CheckIfObstacleCanBePlaced()
     {
+        bool canPlaceObject = true;
         int tries = 0;
         bool isFinished = false;
         int width = 0;
-        switch(objectToPlace)
+
+        // Get the width of the object to place
+        switch (objectToPlace)
         {
-            // TODO:
+            case ObstacleType.stoneWall:
+                width = wallWidth;
+                break;
+            case ObstacleType.rocks:
+                width = rocksWidth;
+                break;
+            case ObstacleType.dynamite:
+                width = dynamiteWidth;
+                break;
+            default:
+                Debug.Log("Obstacle type not handled in switch case.");
+                break;
+
         }
 
-        while(isFinished || tries >= placementTries)
+        while(!isFinished && tries < maxPlacementTries)
         {
+            canPlaceObject = true; // Assume it can be placed. Is set to false if it's not the case.
             int randomStartingIndex = UnityEngine.Random.Range(0, validPlacementAngles.Length - 1);
             int randomStartingAngle = validPlacementAngles[randomStartingIndex];
-            //TODO:
-            //for(int i = 1; i < d)
-            tries++;
+            Debug.Log("RandomStartingAngle: " + randomStartingAngle + " , index: " + randomStartingIndex);
+
+            for (int i = 1; i < width; i++)
+            {
+                if(randomStartingIndex + i >= validPlacementAngles.Length) // Handles the transition from last angle in validPlacementAngles to 0. For example, 359 to 0.
+                {
+                    if(validPlacementAngles[randomStartingIndex + i - validPlacementAngles.Length] != randomStartingIndex + i - validPlacementAngles.Length)
+                    {
+                        canPlaceObject = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    // Check if the object can fit.
+                    if (validPlacementAngles[randomStartingIndex + i] != randomStartingAngle + i)
+                    {
+                        canPlaceObject = false;
+                        break;
+                    }
+                }
+            }
+
+            // If we failed to place object, repeat
+            if(!canPlaceObject)
+            {
+                tries++; // Repeats trying to fit the object at different starting angles until maxTries
+            }
+            else
+            {
+                isFinished = true; // Exit the loop
+            }
+            
         }
+        return canPlaceObject;
     }
 
     private void RandomizeRotation()
