@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] float jumpSpeed = 2f;
     [SerializeField] private bool isGrounded = false;
+
     private bool canJump = true;
+    private bool hasLost = false;
     private Rigidbody rigidBody;
 
     void Start()
@@ -72,11 +74,13 @@ public class Player : MonoBehaviour
     public void Lose()
     {
         Debug.Log("You have lost");
+        if(hasLost) { return; }
+        hasLost = true;
         CanMoveRight = false;
         CanMoveLeft = false;
         canJump = false;
-        //FindObjectOfType<LevelLoader>().ShowRetryScreenAfterDelay();
         FindObjectOfType<ScoreManager>().SaveHighScore();
+        StartCoroutine(FindObjectOfType<LevelLoader>().WaitAndLoadNextScene());
     }
 
     private void Jump()
