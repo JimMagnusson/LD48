@@ -8,11 +8,22 @@ public class Player : MonoBehaviour
     public bool CanMoveRight { get; private set; }
     public bool CanMoveLeft { get; private set; }
 
+    [SerializeField] float jumpSpeed = 2f;
+    [SerializeField] private bool isGrounded = false;
+    private bool canJump = true;
+    private Rigidbody rigidBody;
+
     void Start()
     {
         IsMovingRight = false;
         CanMoveRight = true;
         CanMoveLeft = true;
+        rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        Jump();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,10 +53,36 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
     private void Die()
     {
         CanMoveRight = false;
         CanMoveLeft = false;
+        canJump = false;
         //FindObjectOfType<LevelLoader>().ShowRetryScreenAfterDelay();
+    }
+
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canJump)
+        {
+            Vector3 jumpVelocityToAdd = new Vector3(0f, jumpSpeed, 0f);
+            rigidBody.velocity += jumpVelocityToAdd;
+        }
     }
 }

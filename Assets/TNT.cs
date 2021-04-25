@@ -11,7 +11,7 @@ public class TNT : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             if(explosionParticles == null) { return; }
-            Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
+            GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
             // TODO: Trigger SFX
         }
     }
