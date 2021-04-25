@@ -23,7 +23,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private GameObject rocksPrefab;
     [SerializeField] private GameObject dynamitePrefab;
 
-    [SerializeField] [Tooltip("In degrees")] int holeSizeOneSegment = 70;
+    [SerializeField] [Tooltip("In degrees")] int holeSize = 70;
 
     [SerializeField] private PlatformType platformType = PlatformType.oneSegment;
 
@@ -34,8 +34,6 @@ public class Platform : MonoBehaviour
     [SerializeField] private int rocksWidth = 30;
     [SerializeField] private int dynamiteWidth = 30;
     [SerializeField] private int maxPlacementTries = 100;
-
-    [SerializeField] private int DEGREES_IN_CIRCLE = 360;
 
     private float platformRandomAngle = 0;
     private List<int> validPlacementAngles;
@@ -64,10 +62,6 @@ public class Platform : MonoBehaviour
             {
                 SpawnObject();
                 RemoveValidAngles();
-            }
-            else
-            {
-                Debug.Log("Can't place object " + i);
             }
         }
     }
@@ -165,11 +159,23 @@ public class Platform : MonoBehaviour
                 }
                 for(int i = 280; i < 290; i++)
                 {
-                    validPlacementAngles.Add(i + holeSizeOneSegment);
+                    validPlacementAngles.Add(i + holeSize);
                 }
                 break;
             case PlatformType.twoSegments:
-                // TODO: Make
+                validPlacementAngles = new List<int>();
+                for (int i = 0; i < 105; i++)
+                {
+                    validPlacementAngles.Add(i);
+                }
+                for(int i = 105; i < 210; i++)
+                {
+                    validPlacementAngles.Add(i + holeSize);
+                }
+                for (int i = 210; i < 220; i++)
+                {
+                    validPlacementAngles.Add(i + 2*holeSize);
+                }
                 break;
             default:
                 Debug.Log("Invalid platformType");

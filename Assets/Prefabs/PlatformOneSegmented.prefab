@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2669766438510632249}
   - component: {fileID: 7762726470159076353}
   m_Layer: 8
-  m_Name: Floor_Small_Open
+  m_Name: PlatformOneSegmented
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,15 +79,14 @@ MonoBehaviour:
   stoneWallPrefab: {fileID: 3345682514808705300, guid: 1dc3c025c91cd7c408f5d44e992c59e1, type: 3}
   rocksPrefab: {fileID: 5593668921910019391, guid: 7b4f71b2b57c3e24e8931d80af2a9369, type: 3}
   dynamitePrefab: {fileID: 4716831283402362449, guid: 7f2a43b3f92b0cb43a126b4eba2788d3, type: 3}
-  holeSizeOneSegment: 70
+  holeSize: 70
   platformType: 0
-  maxObstacles: 4
+  maxObstacles: 3
   minObstacles: 0
   wallWidth: 30
   rocksWidth: 20
-  dynamiteWidth: 20
+  dynamiteWidth: 45
   maxPlacementTries: 100
-  DEGREES_IN_CIRCLE: 360
 --- !u!1 &6070931874418693159
 GameObject:
   m_ObjectHideFlags: 0

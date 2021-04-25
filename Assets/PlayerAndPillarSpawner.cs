@@ -19,7 +19,7 @@ public class PlayerAndPillarSpawner : MonoBehaviour
     private Queue<GameObject> pillars;
     private float pillarYPos = 0;
     private int numberOfPillarsSpawned = 0;
-    private const float PILLAR_LENGTH = 23.937f;
+    private const float PILLAR_LENGTH = 23.6f;
 
     void Start()
     {
