@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 568be6b7d701b3e4f9de53f4c8a2c4bb
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Generale Station
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8323105638181ea46bbbddca065dd185, type: 3}
+  - {fileID: 12800000, guid: b275b95b4884d2c46a2996900f4eb2d2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
