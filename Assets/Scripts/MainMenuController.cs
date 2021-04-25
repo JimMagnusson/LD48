@@ -10,6 +10,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Image mainMenuQuit;
     [SerializeField] Image introductionIdle;
     [SerializeField] Image introductionContinue;
+    [SerializeField] Image title;
+
 
     [SerializeField] Button playButton;
     [SerializeField] Button quitButton;
@@ -25,6 +27,7 @@ public class MainMenuController : MonoBehaviour
         mainMenuQuit.enabled = false;
         introductionIdle.enabled = false;
         introductionContinue.enabled = false;
+        title.enabled = true;
         levelLoader = FindObjectOfType<LevelLoader>();
     }
 
