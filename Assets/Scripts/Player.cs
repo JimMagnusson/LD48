@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         CanMoveLeft = false;
         canJump = false;
         //FindObjectOfType<LevelLoader>().ShowRetryScreenAfterDelay();
+        FindObjectOfType<ScoreManager>().SaveHighScore();
     }
 
     private void Jump()
