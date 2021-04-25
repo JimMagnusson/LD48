@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
                 CanMoveLeft = false;
             }
         }
+        else if (other.gameObject.CompareTag("Deadly")) {
+            Die();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -37,5 +40,12 @@ public class Player : MonoBehaviour
             CanMoveRight = true;
             CanMoveLeft = true;
         }
+    }
+
+    private void Die()
+    {
+        CanMoveRight = false;
+        CanMoveLeft = false;
+        //FindObjectOfType<LevelLoader>().ShowRetryScreenAfterDelay();
     }
 }
