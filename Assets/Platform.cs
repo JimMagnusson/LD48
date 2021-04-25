@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    // Prefabs
-
     private enum PlatformType
     {
         oneSegment,
@@ -19,6 +17,11 @@ public class Platform : MonoBehaviour
         rocks,
         dynamite
     }
+
+    // Prefabs
+    [SerializeField] private GameObject stoneWallPrefab;
+    [SerializeField] private GameObject rocksPrefab;
+    [SerializeField] private GameObject dynamitePrefab;
 
     [SerializeField] [Tooltip("In degrees")] int holeSizeOneSegment = 70;
 
@@ -34,10 +37,15 @@ public class Platform : MonoBehaviour
 
     [SerializeField] private int DEGREES_IN_CIRCLE = 360;
 
-    private int[] validPlacementAngles;
+    private float platformRandomAngle = 0;
+    private List<int> validPlacementAngles;
     private int numberOfObstaclesToPlace;
     private List<ObstacleType> placeableObstacles;
     private ObstacleType objectToPlace;
+
+    private GameObject objectPrefab;
+    private int objectWidth = 0;
+
 
     private List<int> anglesToRemove = new List<int>();
 
@@ -54,10 +62,8 @@ public class Platform : MonoBehaviour
             SelectObjectToPlace();
             if(CheckIfObstacleCanBePlaced())
             {
-                Debug.Log("Object " + i + " can be placed");
-                // Remove from valid angles
-
-                // Place the object at the right position.
+                SpawnObject();
+                RemoveValidAngles();
             }
             else
             {
@@ -66,50 +72,53 @@ public class Platform : MonoBehaviour
         }
     }
 
+    private void SpawnObject()
+    {
+        int rotationAngle = anglesToRemove[0];
+        GameObject objectGO = Instantiate(objectPrefab, transform.position, Quaternion.identity, transform);
+        objectGO.transform.Rotate(Vector3.up, rotationAngle + platformRandomAngle);
+    }
+
+    private void RemoveValidAngles()
+    {
+        foreach(int angle in anglesToRemove)
+        {
+            bool isRemoved = validPlacementAngles.Remove(angle);
+            if(!isRemoved)
+            {
+                Debug.Log("Couldn't remove angle from validPlacementAngles.");
+            }
+        }
+    }
+
     /*
-     * Returns true if the object can be placed. If true, the section to be removed is stored in anglesToRemove;
+     * Returns true if the object can be placed. The section to be removed is stored in anglesToRemove;
      */
     private bool CheckIfObstacleCanBePlaced()
     {
         bool canPlaceObject = true;
         int tries = 0;
         bool isFinished = false;
-        int width = 0;
-
-        // Get the width of the object to place
-        switch (objectToPlace)
-        {
-            case ObstacleType.stoneWall:
-                width = wallWidth;
-                break;
-            case ObstacleType.rocks:
-                width = rocksWidth;
-                break;
-            case ObstacleType.dynamite:
-                width = dynamiteWidth;
-                break;
-            default:
-                Debug.Log("Obstacle type not handled in switch case.");
-                break;
-
-        }
+        List<int> possibleAnglesToRemove = new List<int>();
 
         while(!isFinished && tries < maxPlacementTries)
         {
             canPlaceObject = true; // Assume it can be placed. Is set to false if it's not the case.
-            int randomStartingIndex = UnityEngine.Random.Range(0, validPlacementAngles.Length - 1);
+            possibleAnglesToRemove = new List<int>();
+            int randomStartingIndex = UnityEngine.Random.Range(0, validPlacementAngles.Count - 1);
             int randomStartingAngle = validPlacementAngles[randomStartingIndex];
-            Debug.Log("RandomStartingAngle: " + randomStartingAngle + " , index: " + randomStartingIndex);
+            possibleAnglesToRemove.Add(randomStartingAngle);
 
-            for (int i = 1; i < width; i++)
+            for (int i = 1; i < objectWidth; i++)
             {
-                if(randomStartingIndex + i >= validPlacementAngles.Length) // Handles the transition from last angle in validPlacementAngles to 0. For example, 359 to 0.
+                if(randomStartingIndex + i >= validPlacementAngles.Count) // Handles the transition from last angle in validPlacementAngles to 0. For example, 359 to 0.
                 {
-                    if(validPlacementAngles[randomStartingIndex + i - validPlacementAngles.Length] != randomStartingIndex + i - validPlacementAngles.Length)
+                    if(validPlacementAngles[randomStartingIndex + i - validPlacementAngles.Count] != randomStartingIndex + i - validPlacementAngles.Count)
                     {
                         canPlaceObject = false;
                         break;
                     }
+                    possibleAnglesToRemove.Add(randomStartingIndex + i - validPlacementAngles.Count);
                 }
                 else
                 {
@@ -119,6 +128,7 @@ public class Platform : MonoBehaviour
                         canPlaceObject = false;
                         break;
                     }
+                    possibleAnglesToRemove.Add(randomStartingAngle + i);
                 }
             }
 
@@ -133,13 +143,14 @@ public class Platform : MonoBehaviour
             }
             
         }
+        anglesToRemove = possibleAnglesToRemove;
         return canPlaceObject;
     }
 
     private void RandomizeRotation()
     {
-        float randomAngle = UnityEngine.Random.Range(0, 359);
-        transform.Rotate(Vector3.up, randomAngle);
+        platformRandomAngle = UnityEngine.Random.Range(0, 359);
+        transform.Rotate(Vector3.up, platformRandomAngle);
     }
 
     private void GetValidPlacementAngles()
@@ -147,14 +158,14 @@ public class Platform : MonoBehaviour
         switch(platformType)
         {
             case PlatformType.oneSegment:
-                validPlacementAngles = new int[DEGREES_IN_CIRCLE - holeSizeOneSegment];
+                validPlacementAngles = new List<int>();
                 for (int i = 0; i < 280; i++)
                 {
-                    validPlacementAngles[i] = i;
+                    validPlacementAngles.Add(i);
                 }
                 for(int i = 280; i < 290; i++)
                 {
-                    validPlacementAngles[i] = i + holeSizeOneSegment;
+                    validPlacementAngles.Add(i + holeSizeOneSegment);
                 }
                 break;
             case PlatformType.twoSegments:
@@ -190,5 +201,27 @@ public class Platform : MonoBehaviour
         {
             placeableObstacles.Remove(objectToPlace);
         }
+
+        // Set 
+        switch (objectToPlace)
+        {
+            case ObstacleType.stoneWall:
+                objectPrefab = stoneWallPrefab;
+                objectWidth = wallWidth;
+                break;
+            case ObstacleType.rocks:
+                objectPrefab = rocksPrefab;
+                objectWidth = rocksWidth;
+                break;
+            case ObstacleType.dynamite:
+                objectPrefab = dynamitePrefab;
+                objectWidth = dynamiteWidth;
+                break;
+            default:
+                Debug.Log("Obstacle type not handled in switch case.");
+                break;
+
+        }
+
     }
 }
