@@ -10,7 +10,6 @@ public class Jumper : MonoBehaviour
     private Rigidbody rigidBody;
     [SerializeField] private bool isGrounded = false;
 
-    float distanceToGround;
 
    void Start()
     {

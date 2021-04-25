@@ -81,8 +81,8 @@ MonoBehaviour:
   dynamitePrefab: {fileID: 4716831283402362449, guid: 7f2a43b3f92b0cb43a126b4eba2788d3, type: 3}
   holeSizeOneSegment: 70
   platformType: 0
-  maxObstacles: 20
-  minObstacles: 20
+  maxObstacles: 4
+  minObstacles: 0
   wallWidth: 30
   rocksWidth: 20
   dynamiteWidth: 20
