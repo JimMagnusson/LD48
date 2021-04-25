@@ -6,14 +6,19 @@ using System;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSlowSpeed = 0.1f;
-    public float cameraFastSpeed = 0.5f;
+    [SerializeField] private float cameraSlowSpeed = 0.1f;
+    [SerializeField] private float cameraFastSpeed = 0.5f;
+    [SerializeField] private float depthSpeedupFactor = 1f;
 
-    public float dollyXPos = 0f;
+    [SerializeField] private float maxCameraSpeed = 0.25f;
+    [SerializeField] private float dollyXPos = 0f;
 
     private const float SEGMENT_LENGTH = 23.937f;
 
-    private float cameraSpeed;
+    private DepthMeter depthMeter;
+    private int currentDepth;
+
+    [SerializeField] private float cameraSpeed;
     private CinemachineVirtualCamera currentCamera;
     private CinemachineTrackedDolly dolly;
     private int currentSegmentIndex = 1;
@@ -49,6 +54,8 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
+        depthMeter = FindObjectOfType<Player>().GetComponent<DepthMeter>();
+
         currentCamera = GetComponent<CinemachineVirtualCamera>();
         dolly = currentCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
@@ -74,13 +81,28 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        if(isMoving == true)
+        if (isMoving == true)
         {
             dolly.m_PathPosition += cameraSpeed * Time.deltaTime;
         }
         CheckMovement();
         dollyCurrentYPos = dolly.m_PathPosition * SEGMENT_LENGTH;
         MoveColliders();
+
+        HandleCameraSpeedIncrease();
+    }
+
+    private void HandleCameraSpeedIncrease()
+    {
+        int depthDiff = depthMeter.GetCurrentDepth() - currentDepth; // 0 or 1
+
+        if(cameraSlowSpeed < maxCameraSpeed)
+        {
+            cameraSlowSpeed += depthDiff * depthSpeedupFactor * Mathf.Pow(10,-4);
+            cameraSpeed += depthDiff * depthSpeedupFactor * Mathf.Pow(10, -4);
+        }
+
+        currentDepth = depthMeter.GetCurrentDepth();
     }
 
     private void MoveColliders()

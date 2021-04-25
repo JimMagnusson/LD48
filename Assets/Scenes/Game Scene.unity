@@ -269,7 +269,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -451,6 +451,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 21.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5324626850005150877, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626850005150877, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 5324626850005150879, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -467,6 +475,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 21.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5324626850686665294, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626850686665294, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 5324626850686665328, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -477,11 +493,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: cameraSlowSpeed
-      value: 0.05
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: cameraFastSpeed
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: speedupFactor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: depthSpeedupFactor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626851175896509, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5324626851175896510, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: m_LocalPosition.x

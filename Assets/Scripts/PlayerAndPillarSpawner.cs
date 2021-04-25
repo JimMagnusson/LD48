@@ -21,12 +21,16 @@ public class PlayerAndPillarSpawner : MonoBehaviour
     private int numberOfPillarsSpawned = 0;
     private const float PILLAR_LENGTH = 23.6f;
 
+    private void Awake()
+    {
+        SpawnPlayer();
+    }
+
     void Start()
     {
         pillars = new Queue<GameObject>();
         SpawnStartingCylinders();
         SpawnNextPillar();
-        SpawnPlayer();
     }
 
     private void SpawnPlayer()
