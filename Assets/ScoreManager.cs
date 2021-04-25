@@ -10,10 +10,13 @@ public class ScoreManager : MonoBehaviour
 
     private DepthMeter depthMeter;
 
+    private void Awake()
+    {
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
     private void Start()
     {
         Score = 0;
-        HighScore = PlayerPrefs.GetInt("HighScore", 0);
         depthMeter = FindObjectOfType<DepthMeter>();
     }
 
