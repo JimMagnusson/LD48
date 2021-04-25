@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
+        if(depthMeter == null) { return; }
         // Get score from new max depth
         Score = (int)((depthMeter.GetMaxDepth() * depthMultiplier) + 0.5);
 
@@ -38,6 +39,10 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", Score);
         }
+
+        // Save depth and score
+        PlayerPrefs.SetInt("Depth", depthMeter.GetMaxDepth());
+        PlayerPrefs.GetInt("Score", Score);
     }
 
 }
