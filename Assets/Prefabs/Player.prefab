@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSpeed: 16
+  deathrattleSpeed: 8
   isGrounded: 0
   jumpSound: {fileID: 8300000, guid: 5e2699983eb002740b5f2691e88bb435, type: 3}
   landSound: {fileID: 8300000, guid: 80de66aea169e0742980e551589203c6, type: 3}

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] float waitUntilLoad = 2f;
 
     public void ReloadScene()
     {
@@ -20,12 +19,5 @@ public class LevelLoader : MonoBehaviour
     public void LoadSceneWithBuildIndex(int buildindex)
     {
         SceneManager.LoadScene(buildindex);
-    }
-
-
-    public IEnumerator WaitAndLoadNextScene()
-    {
-        yield return new WaitForSeconds(waitUntilLoad);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

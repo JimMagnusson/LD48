@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691b0b5805d29114d9a58f7b452bee09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectSound: {fileID: 8300000, guid: 80de66aea169e0742980e551589203c6, type: 3}
+  collectSound: {fileID: 8300000, guid: a0639883695328542a15f25aed91d705, type: 3}
   gemType: 1
 --- !u!82 &8201992004727588683
 AudioSource:
@@ -73,7 +73,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.075
+  m_Volume: 0.025
   m_Pitch: 1
   Loop: 0
   Mute: 0

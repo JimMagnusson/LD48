@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public bool CanMoveLeft { get; private set; }
 
     [SerializeField] float jumpSpeed = 2f;
+    [SerializeField] float deathrattleSpeed = 1f;
     [SerializeField] private bool isGrounded = false;
     [SerializeField] private AudioClip jumpSound = null;
     [SerializeField] private AudioClip landSound = null;
@@ -93,8 +94,11 @@ public class Player : MonoBehaviour
         CanMoveRight = false;
         CanMoveLeft = false;
         canJump = false;
+        Deathrattle();
         FindObjectOfType<ScoreManager>().SaveHighScore();
-        StartCoroutine(FindObjectOfType<LevelLoader>().WaitAndLoadNextScene());
+
+        FindObjectOfType<GameOverController>().ShowGameOverMenu();
+        //StartCoroutine(FindObjectOfType<LevelLoader>().WaitAndLoadNextScene());
     }
 
     private void Jump()
@@ -105,5 +109,11 @@ public class Player : MonoBehaviour
             rigidBody.velocity += jumpVelocityToAdd;
             audioSource.PlayOneShot(jumpSound);
         }
+    }
+
+    private void Deathrattle()
+    {
+        Vector3 jumpVelocityToAdd = new Vector3(0f, deathrattleSpeed, 0f);
+        rigidBody.velocity = jumpVelocityToAdd;
     }
 }

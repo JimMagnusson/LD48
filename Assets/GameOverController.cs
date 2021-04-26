@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameOverController : MonoBehaviour
 {
+    [SerializeField] GameObject gameOverMenu;
     [SerializeField] Image gameOverIdle;
     [SerializeField] Image gameOverRestart;
     [SerializeField] Image gameOverQuit;
@@ -23,6 +24,7 @@ public class GameOverController : MonoBehaviour
 
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
+    private DepthMeter depthMeter;
 
     private string depthTextStringEndFormat;
     private string highscoreStringEndFormat;
@@ -30,21 +32,25 @@ public class GameOverController : MonoBehaviour
 
     private void Start()
     {
+        levelLoader = FindObjectOfType<LevelLoader>();
+        scoreManager = FindObjectOfType<ScoreManager>();
+        depthMeter = FindObjectOfType<DepthMeter>();
+    }
+
+    public void ShowGameOverMenu()
+    {
+        gameOverMenu.SetActive(true);
         gameOverIdle.enabled = true;
         gameOverRestart.enabled = false;
         gameOverQuit.enabled = false;
-        levelLoader = FindObjectOfType<LevelLoader>();
-        scoreManager = FindObjectOfType<ScoreManager>();
 
         depthTextStringEndFormat = depthText.text.Substring(depthStartZeroes, depthText.text.Length - depthStartZeroes);
         highscoreStringEndFormat = highScoreText.text.Substring(highScoreStartZeroes, highScoreText.text.Length - highScoreStartZeroes);
         scoreStringEndFormat = scoreText.text.Substring(scoreTextStartZeroes, scoreText.text.Length - scoreTextStartZeroes);
 
-
-        int depth = PlayerPrefs.GetInt("Depth", 0);
-        depthText.text = depth.ToString() + depthTextStringEndFormat;
+        depthText.text = depthMeter.GetMaxDepth().ToString() + depthTextStringEndFormat;
         highScoreText.text = scoreManager.HighScore.ToString() + highscoreStringEndFormat;
-        scoreText.text = PlayerPrefs.GetInt("Score", 0).ToString() + scoreStringEndFormat;
+        scoreText.text = scoreManager.Score.ToString() + scoreStringEndFormat;
     }
 
     public void Restart()

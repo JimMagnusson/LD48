@@ -106,8 +106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3970716557068616193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.714, y: 0.6139, z: -0.492}
-  m_LocalScale: {x: 2.3633966, y: 0.75778687, z: 0.16945644}
+  m_LocalPosition: {x: 5.714, y: 0.691, z: -0.492}
+  m_LocalScale: {x: 2.3633966, y: 1.25, z: 0.16945644}
   m_Children: []
   m_Father: {fileID: 5110288788515889029}
   m_RootOrder: 1
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5110288788515889029}
   - component: {fileID: 4711290703696769914}
   - component: {fileID: 4711290703696769893}
+  - component: {fileID: 4038899817207416452}
   m_Layer: 0
   m_Name: Rocks_Small
   m_TagString: Ground
@@ -185,11 +186,24 @@ MeshCollider:
   m_GameObject: {fileID: 5593668921910019391}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 559b4ce97dd7fd045ac8169f7b809c49, type: 3}
+--- !u!65 &4038899817207416452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593668921910019391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8369598, y: 0.23973775, z: 1.2498231}
+  m_Center: {x: 5.697372, y: 1.4121972, z: 0.09428656}
 --- !u!1 &5658410063804955626
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,8 +229,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5658410063804955626}
   m_LocalRotation: {x: -0, y: -0.074526206, z: -0, w: 0.997219}
-  m_LocalPosition: {x: 5.791, y: 0.6139, z: 0.815}
-  m_LocalScale: {x: 2.3633966, y: 0.75778687, z: 0.16945644}
+  m_LocalPosition: {x: 5.791, y: 0.691, z: 0.815}
+  m_LocalScale: {x: 2.3633966, y: 1.25, z: 0.16945644}
   m_Children: []
   m_Father: {fileID: 5110288788515889029}
   m_RootOrder: 2

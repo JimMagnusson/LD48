@@ -12,9 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     public int Score { get; private set; }
     public int HighScore { get; private set; }
-
-
-    private int gemScore = 0;
+    public int GemScore { get; private set; }
     private DepthMeter depthMeter;
     private UI_Manager ui_Manager;
 
@@ -31,7 +29,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        Score = (int)((depthMeter.GetMaxDepth() * depthMultiplier + gemScore) + 0.5);
+        Score = (int)((depthMeter.GetMaxDepth() * depthMultiplier + GemScore) + 0.5);
         ui_Manager.UpdateScoreUI();
     }
 
@@ -45,10 +43,6 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", Score);
         }
-
-        // Save depth and score
-        PlayerPrefs.SetInt("Depth", depthMeter.GetMaxDepth());
-        PlayerPrefs.SetInt("Score", Score);
     }
 
 
@@ -57,16 +51,16 @@ public class ScoreManager : MonoBehaviour
         switch(gemType)
         {
             case Gem.topaz:
-                gemScore += topazScore;
+                GemScore += topazScore;
                 break;
             case Gem.emerald:
-                gemScore += emeraldScore;
+                GemScore += emeraldScore;
                 break;
             case Gem.ruby:
-                gemScore += rubyScore;
+                GemScore += rubyScore;
                 break;
             case Gem.sapphire:
-                gemScore += sapphireScore;
+                GemScore += sapphireScore;
                 break;
             default:
                 Debug.LogError("No switch case for the gem type");

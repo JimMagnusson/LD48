@@ -8,11 +8,14 @@ public class TNT : MonoBehaviour
 
     [SerializeField] private AudioClip explosionSFX = null;
 
+    private bool hasExploded = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            if(explosionParticles == null || explosionSFX == null) { return; }
+            if(explosionParticles == null || explosionSFX == null || hasExploded) { return; }
+            hasExploded = true;
             GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
             GetComponent<AudioSource>().PlayOneShot(explosionSFX);
         }

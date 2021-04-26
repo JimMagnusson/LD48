@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LoseOnTrigger : MonoBehaviour
 {
+    [SerializeField] private AudioClip loseSound = null;
+
     private Player player;
     private bool isTriggered = false;
 
@@ -18,6 +20,7 @@ public class LoseOnTrigger : MonoBehaviour
             if (isTriggered) { return; }
             isTriggered = true;
 
+            GetComponent<AudioSource>().PlayOneShot(loseSound);
             player.Lose();
         }
     }

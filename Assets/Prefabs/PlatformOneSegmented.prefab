@@ -176,23 +176,21 @@ MonoBehaviour:
   stoneWallPrefab: {fileID: 3345682514808705300, guid: 1dc3c025c91cd7c408f5d44e992c59e1, type: 3}
   rocksPrefab: {fileID: 5593668921910019391, guid: 7b4f71b2b57c3e24e8931d80af2a9369, type: 3}
   dynamitePrefab: {fileID: 4716831283402362449, guid: 7f2a43b3f92b0cb43a126b4eba2788d3, type: 3}
-  diamondPrefab: {fileID: 2718171675732919834, guid: 0a0a538de394e884aa214e54490a3ede, type: 3}
   sapphirePrefab: {fileID: 2803171174681438476, guid: 8edeb4a1cd9cb7b44965791a94728b06, type: 3}
   rubyPrefab: {fileID: 4579487389256593171, guid: 44b22faf57c3452418567852f9b73cb9, type: 3}
   emeraldPrefab: {fileID: 318839583537984286, guid: 8c6f4d8a25463d140817a719daf40f60, type: 3}
   topazPrefab: {fileID: 5549135318721532858, guid: 3cbc8b37cb75f6d46a76af3a47b88f52, type: 3}
   holeSize: 70
   platformType: 0
-  maxObstacles: 5
-  minObstacles: 0
+  maxObstacles: 6
+  minObstacles: 1
   wallWidth: 30
   rocksWidth: 20
   dynamiteWidth: 45
-  diamondWidth: 15
-  sapphireWidth: 15
-  rubyWidth: 15
-  emeraldWidth: 15
-  topazWidth: 15
+  sapphireWidth: 20
+  rubyWidth: 20
+  emeraldWidth: 20
+  topazWidth: 20
   maxPlacementTries: 100
 --- !u!1 &6070931874418693159
 GameObject:
