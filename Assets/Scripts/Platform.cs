@@ -15,11 +15,7 @@ public class Platform : MonoBehaviour
     {
         stoneWall,
         rocks,
-        dynamite,
-        sapphire,
-        ruby,
-        emerald,
-        topaz,
+        dynamite
     }
 
     // Prefabs
@@ -43,6 +39,10 @@ public class Platform : MonoBehaviour
     [SerializeField] private int rocksWidth = 30;
     [SerializeField] private int dynamiteWidth = 30;
 
+
+    [SerializeField] private int maxGems = 2;
+    [SerializeField] private int minGems = 0;
+
     [SerializeField] private int sapphireWidth = 10;
     [SerializeField] private int rubyWidth = 10;
     [SerializeField] private int emeraldWidth = 10;
@@ -54,11 +54,14 @@ public class Platform : MonoBehaviour
     private List<int> validPlacementAngles;
     private int numberOfObstaclesToPlace;
     private List<ObstacleType> placeableObstacles;
-    private ObstacleType objectToPlace;
+    private ObstacleType obstacleToPlace;
+
+    private int numberOfGemsToPlace;
+    private List<Gem> placeableGems;
+    private Gem gemToPlace;
 
     private GameObject objectPrefab;
     private int objectWidth = 0;
-
 
     private List<int> anglesToRemove = new List<int>();
 
@@ -67,13 +70,29 @@ public class Platform : MonoBehaviour
     {
         RandomizeRotation();
         GetValidPlacementAngles();
+
+        // Obstacles
         DetermineNumberOfObstaclesToPlace();
         DeterminePlaceableObstacles();
 
         for(int i = 0; i < numberOfObstaclesToPlace; i++)
         {
             SelectObjectToPlace();
-            if(CheckIfObstacleCanBePlaced())
+            if(CheckIfObjectCanBePlaced())
+            {
+                SpawnObject();
+                RemoveValidAngles();
+            }
+        }
+
+        // Gems
+        DetermineNumberOfGemsToPlace();
+        DeterminePlaceableGems();
+
+        for(int i = 0; i< numberOfGemsToPlace; i++)
+        {
+            SelectGemToPlace();
+            if(CheckIfObjectCanBePlaced())
             {
                 SpawnObject();
                 RemoveValidAngles();
@@ -103,7 +122,7 @@ public class Platform : MonoBehaviour
     /*
      * Returns true if the object can be placed. The section to be removed is stored in anglesToRemove;
      */
-    private bool CheckIfObstacleCanBePlaced()
+    private bool CheckIfObjectCanBePlaced()
     {
         bool canPlaceObject = true;
         int tries = 0;
@@ -204,6 +223,11 @@ public class Platform : MonoBehaviour
         numberOfObstaclesToPlace = UnityEngine.Random.Range(minObstacles, maxObstacles);
     }
 
+    private void DetermineNumberOfGemsToPlace()
+    {
+        numberOfGemsToPlace = UnityEngine.Random.Range(minGems, maxGems);
+    }
+
     private void DeterminePlaceableObstacles()
     {
         placeableObstacles = new List<ObstacleType>();
@@ -211,20 +235,29 @@ public class Platform : MonoBehaviour
         {
             placeableObstacles.Add((ObstacleType)i);
         }
+    }
+
+    private void DeterminePlaceableGems()
+    {
+        placeableGems = new List<Gem>();
+        for (int i = 0; i < System.Enum.GetValues(typeof(Gem)).Length; i++)
+        {
+            placeableGems.Add((Gem)i);
+        }
 
     }
+
     private void SelectObjectToPlace()
     {
         int randomIndex = UnityEngine.Random.Range(0, placeableObstacles.Count);
-        objectToPlace = placeableObstacles[randomIndex];
+        obstacleToPlace = placeableObstacles[randomIndex];
         // Can only have one wall per platform
-        if (objectToPlace == ObstacleType.stoneWall)
+        if (obstacleToPlace == ObstacleType.stoneWall)
         {
-            placeableObstacles.Remove(objectToPlace);
+            placeableObstacles.Remove(obstacleToPlace);
         }
 
-        // Set 
-        switch (objectToPlace)
+        switch (obstacleToPlace)
         {
             case ObstacleType.stoneWall:
                 objectPrefab = stoneWallPrefab;
@@ -238,27 +271,38 @@ public class Platform : MonoBehaviour
                 objectPrefab = dynamitePrefab;
                 objectWidth = dynamiteWidth;
                 break;
-            case ObstacleType.sapphire:
+            default:
+                Debug.Log("Obstacle type not handled in switch case.");
+                break;
+        }
+    }
+
+    private void SelectGemToPlace()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, placeableGems.Count);
+        gemToPlace = placeableGems[randomIndex];
+
+        switch (gemToPlace)
+        {
+            case Gem.sapphire:
                 objectPrefab = sapphirePrefab;
                 objectWidth = sapphireWidth;
                 break;
-            case ObstacleType.ruby:
+            case Gem.ruby:
                 objectPrefab = rubyPrefab;
                 objectWidth = rubyWidth;
                 break;
-            case ObstacleType.emerald:
+            case Gem.emerald:
                 objectPrefab = emeraldPrefab;
                 objectWidth = emeraldWidth;
                 break;
-            case ObstacleType.topaz:
+            case Gem.topaz:
                 objectPrefab = topazPrefab;
                 objectWidth = topazWidth;
                 break;
             default:
-                Debug.Log("Obstacle type not handled in switch case.");
+                Debug.Log("Gem type not handled in switch case.");
                 break;
-
         }
-
     }
 }

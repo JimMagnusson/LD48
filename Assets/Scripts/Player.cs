@@ -98,7 +98,6 @@ public class Player : MonoBehaviour
         FindObjectOfType<ScoreManager>().SaveHighScore();
 
         FindObjectOfType<GameOverController>().ShowGameOverMenu();
-        //StartCoroutine(FindObjectOfType<LevelLoader>().WaitAndLoadNextScene());
     }
 
     private void Jump()

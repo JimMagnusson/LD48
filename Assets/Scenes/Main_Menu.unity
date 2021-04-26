@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ebd2cc54dfe5c468a4b3f441f879e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReachTarget: 1
+  timeToReachTarget: 0.5
   targetYPos: 50
   mainMenuIdle: {fileID: 1135862330}
   mainMenuPlay: {fileID: 1274963587}

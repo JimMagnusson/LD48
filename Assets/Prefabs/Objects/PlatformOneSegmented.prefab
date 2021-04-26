@@ -182,11 +182,13 @@ MonoBehaviour:
   topazPrefab: {fileID: 5549135318721532858, guid: 3cbc8b37cb75f6d46a76af3a47b88f52, type: 3}
   holeSize: 70
   platformType: 0
-  maxObstacles: 6
-  minObstacles: 1
+  maxObstacles: 3
+  minObstacles: 0
   wallWidth: 30
   rocksWidth: 20
   dynamiteWidth: 45
+  maxGems: 3
+  minGems: 0
   sapphireWidth: 20
   rubyWidth: 20
   emeraldWidth: 20

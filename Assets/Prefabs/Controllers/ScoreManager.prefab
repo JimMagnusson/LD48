@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depthMultiplier: 1
+  topazScore: 10
+  emeraldScore: 20
+  rubyScore: 30
+  sapphireScore: 40
