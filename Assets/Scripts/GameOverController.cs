@@ -8,6 +8,7 @@ using System;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] float timeToReachTarget = 1f;
+    [SerializeField] int targetYPos = 50;
 
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] Image gameOverIdle;
@@ -75,7 +76,7 @@ public class GameOverController : MonoBehaviour
     private void MoveGameOverScreen()
     {
         currentAnchoredPos = gameOverMenu.GetComponent<RectTransform>().anchoredPosition;
-        targetAnchorPos = new Vector2(0, 0);
+        targetAnchorPos = new Vector2(0, targetYPos);
         isMoving = true;
         t = 0;
     }
