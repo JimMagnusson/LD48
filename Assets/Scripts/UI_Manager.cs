@@ -33,11 +33,13 @@ public class UI_Manager : MonoBehaviour
         highScoreText.text = scoreManager.HighScore.ToString() + highscoreStringEndFormat;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateDepthUI()
     {
         depthText.text = depthMeter.GetMaxDepth().ToString() + depthTextStringEndFormat;
+    }
 
-        //coinText.text
+    public void UpdateScoreUI()
+    {
+        coinText.text = scoreManager.Score.ToString() + coinTextStringEndFormat;
     }
 }

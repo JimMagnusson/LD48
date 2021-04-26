@@ -16,7 +16,6 @@ public class Platform : MonoBehaviour
         stoneWall,
         rocks,
         dynamite,
-        diamond,
         sapphire,
         ruby,
         emerald,
@@ -28,7 +27,6 @@ public class Platform : MonoBehaviour
     [SerializeField] private GameObject rocksPrefab;
     [SerializeField] private GameObject dynamitePrefab;
 
-    [SerializeField] private GameObject diamondPrefab;
     [SerializeField] private GameObject sapphirePrefab;
     [SerializeField] private GameObject rubyPrefab;
     [SerializeField] private GameObject emeraldPrefab;
@@ -45,7 +43,6 @@ public class Platform : MonoBehaviour
     [SerializeField] private int rocksWidth = 30;
     [SerializeField] private int dynamiteWidth = 30;
 
-    [SerializeField] private int diamondWidth = 10;
     [SerializeField] private int sapphireWidth = 10;
     [SerializeField] private int rubyWidth = 10;
     [SerializeField] private int emeraldWidth = 10;
@@ -240,10 +237,6 @@ public class Platform : MonoBehaviour
             case ObstacleType.dynamite:
                 objectPrefab = dynamitePrefab;
                 objectWidth = dynamiteWidth;
-                break;
-            case ObstacleType.diamond:
-                objectPrefab = diamondPrefab;
-                objectWidth = diamondWidth;
                 break;
             case ObstacleType.sapphire:
                 objectPrefab = sapphirePrefab;

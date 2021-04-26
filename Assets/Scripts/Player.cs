@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private bool hasLost = false;
     private Rigidbody rigidBody;
     private AudioSource audioSource;
+    private ScoreManager scoreManager;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         CanMoveLeft = true;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     private void Update()
@@ -47,6 +49,11 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Deadly")) {
             Lose();
+        }
+        else if (other.gameObject.CompareTag("Collectible"))
+        {
+            Collectible collectible = other.gameObject.GetComponent<Collectible>();
+            scoreManager.AddGemToScore(collectible.GetGemType());
         }
     }
 
@@ -81,7 +88,6 @@ public class Player : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("You have lost");
         if(hasLost) { return; }
         hasLost = true;
         CanMoveRight = false;

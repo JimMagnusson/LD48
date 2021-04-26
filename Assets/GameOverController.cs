@@ -45,8 +45,6 @@ public class GameOverController : MonoBehaviour
         depthText.text = depth.ToString() + depthTextStringEndFormat;
         highScoreText.text = scoreManager.HighScore.ToString() + highscoreStringEndFormat;
         scoreText.text = PlayerPrefs.GetInt("Score", 0).ToString() + scoreStringEndFormat;
-
-        // TODO: start animation
     }
 
     public void Restart()
@@ -76,12 +74,6 @@ public class GameOverController : MonoBehaviour
         gameOverIdle.enabled = true;
         gameOverQuit.enabled = false;
         gameOverRestart.enabled = false;
-    }
-
-
-    private void Update()
-    {
-        // Do animation stuff
     }
 
 }
