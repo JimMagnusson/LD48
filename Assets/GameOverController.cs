@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameOverController : MonoBehaviour
 {
+    [SerializeField] float timeToReachTarget = 1f;
+
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] Image gameOverIdle;
     [SerializeField] Image gameOverRestart;
@@ -30,6 +33,11 @@ public class GameOverController : MonoBehaviour
     private string highscoreStringEndFormat;
     private string scoreStringEndFormat;
 
+    private Vector2 currentAnchoredPos = Vector2.zero;
+    private Vector2 targetAnchorPos = Vector2.zero;
+    private bool isMoving = false;
+    private float t = 0;
+
     private void Start()
     {
         levelLoader = FindObjectOfType<LevelLoader>();
@@ -37,8 +45,19 @@ public class GameOverController : MonoBehaviour
         depthMeter = FindObjectOfType<DepthMeter>();
     }
 
+    private void Update()
+    {
+        if(isMoving)
+        {
+            t += Time.deltaTime / timeToReachTarget;
+            gameOverMenu.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentAnchoredPos, targetAnchorPos, t);
+        }
+    }
+
     public void ShowGameOverMenu()
     {
+        MoveGameOverScreen();
+
         gameOverMenu.SetActive(true);
         gameOverIdle.enabled = true;
         gameOverRestart.enabled = false;
@@ -51,6 +70,14 @@ public class GameOverController : MonoBehaviour
         depthText.text = depthMeter.GetMaxDepth().ToString() + depthTextStringEndFormat;
         highScoreText.text = scoreManager.HighScore.ToString() + highscoreStringEndFormat;
         scoreText.text = scoreManager.Score.ToString() + scoreStringEndFormat;
+    }
+
+    private void MoveGameOverScreen()
+    {
+        currentAnchoredPos = gameOverMenu.GetComponent<RectTransform>().anchoredPosition;
+        targetAnchorPos = new Vector2(0, 0);
+        isMoving = true;
+        t = 0;
     }
 
     public void Restart()

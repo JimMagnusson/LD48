@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] float timeToReachTarget = 1f;
+    [SerializeField] int targetYPos = 50;
+
     [SerializeField] Image mainMenuIdle;
     [SerializeField] Image mainMenuPlay;
     [SerializeField] Image mainMenuQuit;
     [SerializeField] Image introductionIdle;
     [SerializeField] Image introductionContinue;
     [SerializeField] Image title;
-
+    [SerializeField] GameObject introductionMenu;
 
     [SerializeField] Button playButton;
     [SerializeField] Button quitButton;
@@ -19,6 +22,10 @@ public class MainMenuController : MonoBehaviour
 
     private LevelLoader levelLoader;
 
+    private Vector2 startAnchorPos = Vector2.zero;
+    private Vector2 targetAnchorPos = Vector2.zero;
+    private bool isMoving = false;
+    private float t = 0;
 
     private void Start()
     {
@@ -29,6 +36,15 @@ public class MainMenuController : MonoBehaviour
         introductionContinue.enabled = false;
         title.enabled = true;
         levelLoader = FindObjectOfType<LevelLoader>();
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            t += Time.unscaledDeltaTime / timeToReachTarget;
+            introductionMenu.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(startAnchorPos, targetAnchorPos, t);
+        }
     }
 
     public void EnterGame()
@@ -50,6 +66,7 @@ public class MainMenuController : MonoBehaviour
 
     public void EnterIntroduction()
     {
+        MoveIntroductionMenu();
         introductionIdle.gameObject.SetActive(true);
         introductionContinue.gameObject.SetActive(true);
         introductionIdle.enabled = true;
@@ -84,5 +101,13 @@ public class MainMenuController : MonoBehaviour
         mainMenuIdle.enabled = true;
         mainMenuQuit.enabled = false;
         mainMenuPlay.enabled = false;
+    }
+
+    private void MoveIntroductionMenu()
+    {
+        startAnchorPos = introductionMenu.GetComponent<RectTransform>().anchoredPosition;
+        targetAnchorPos = new Vector2(0, targetYPos);
+        isMoving = true;
+        t = 0;
     }
 }
