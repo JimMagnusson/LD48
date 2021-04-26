@@ -2926,10 +2926,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depthMultiplier: 1
-  topazScore: 10
-  emeraldScore: 20
-  rubyScore: 30
-  sapphireScore: 40
+  topazScore: 5
+  emeraldScore: 10
+  rubyScore: 15
+  sapphireScore: 20
 --- !u!4 &1547764439
 Transform:
   m_ObjectHideFlags: 0
@@ -4194,6 +4194,10 @@ PrefabInstance:
       propertyPath: pauseContinue
       value: 
       objectReference: {fileID: 457351655}
+    - target: {fileID: 3244677018967765693, guid: 6e7289da2a811014d9d93109aa61bd5a, type: 3}
+      propertyPath: timeToReachTarget
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3244677018967765694, guid: 6e7289da2a811014d9d93109aa61bd5a, type: 3}
       propertyPath: m_Name
       value: Pause Controller

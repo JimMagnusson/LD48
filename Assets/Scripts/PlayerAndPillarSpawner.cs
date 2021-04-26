@@ -31,6 +31,7 @@ public class PlayerAndPillarSpawner : MonoBehaviour
         pillars = new Queue<GameObject>();
         SpawnStartingCylinders();
         SpawnNextPillar();
+        SpawnNextPillar();
     }
 
     private void SpawnPlayer()
