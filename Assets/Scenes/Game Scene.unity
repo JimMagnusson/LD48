@@ -1653,7 +1653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: depthSpeedupFactor
-      value: 5
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324626851175896508, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
+      propertyPath: maxCameraSpeed
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 5324626851175896510, guid: b3d3d43117c68fd4c9f04dc6c8144b21, type: 3}
       propertyPath: m_LocalPosition.x
