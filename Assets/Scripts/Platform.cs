@@ -15,7 +15,7 @@ public class Platform : MonoBehaviour
     {
         stoneWall,
         rocks,
-        dynamite
+        dynamite,
     }
 
     // Prefabs
