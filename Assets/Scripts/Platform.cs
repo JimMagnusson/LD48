@@ -15,13 +15,24 @@ public class Platform : MonoBehaviour
     {
         stoneWall,
         rocks,
-        dynamite
+        dynamite,
+        diamond,
+        sapphire,
+        ruby,
+        emerald,
+        topaz,
     }
 
     // Prefabs
     [SerializeField] private GameObject stoneWallPrefab;
     [SerializeField] private GameObject rocksPrefab;
     [SerializeField] private GameObject dynamitePrefab;
+
+    [SerializeField] private GameObject diamondPrefab;
+    [SerializeField] private GameObject sapphirePrefab;
+    [SerializeField] private GameObject rubyPrefab;
+    [SerializeField] private GameObject emeraldPrefab;
+    [SerializeField] private GameObject topazPrefab;
 
     [SerializeField] [Tooltip("In degrees")] int holeSize = 70;
 
@@ -33,6 +44,13 @@ public class Platform : MonoBehaviour
     [SerializeField] private int wallWidth = 30;
     [SerializeField] private int rocksWidth = 30;
     [SerializeField] private int dynamiteWidth = 30;
+
+    [SerializeField] private int diamondWidth = 10;
+    [SerializeField] private int sapphireWidth = 10;
+    [SerializeField] private int rubyWidth = 10;
+    [SerializeField] private int emeraldWidth = 10;
+    [SerializeField] private int topazWidth = 10;
+
     [SerializeField] private int maxPlacementTries = 100;
 
     private float platformRandomAngle = 0;
@@ -222,6 +240,26 @@ public class Platform : MonoBehaviour
             case ObstacleType.dynamite:
                 objectPrefab = dynamitePrefab;
                 objectWidth = dynamiteWidth;
+                break;
+            case ObstacleType.diamond:
+                objectPrefab = diamondPrefab;
+                objectWidth = diamondWidth;
+                break;
+            case ObstacleType.sapphire:
+                objectPrefab = sapphirePrefab;
+                objectWidth = sapphireWidth;
+                break;
+            case ObstacleType.ruby:
+                objectPrefab = rubyPrefab;
+                objectWidth = rubyWidth;
+                break;
+            case ObstacleType.emerald:
+                objectPrefab = emeraldPrefab;
+                objectWidth = emeraldWidth;
+                break;
+            case ObstacleType.topaz:
+                objectPrefab = topazPrefab;
+                objectWidth = topazWidth;
                 break;
             default:
                 Debug.Log("Obstacle type not handled in switch case.");

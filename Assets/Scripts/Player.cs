@@ -10,10 +10,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] float jumpSpeed = 2f;
     [SerializeField] private bool isGrounded = false;
+    [SerializeField] private AudioClip jumpSound = null;
+    [SerializeField] private AudioClip landSound = null;
 
     private bool canJump = true;
     private bool hasLost = false;
     private Rigidbody rigidBody;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -21,6 +24,7 @@ public class Player : MonoBehaviour
         CanMoveRight = true;
         CanMoveLeft = true;
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -59,7 +63,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            if(!isGrounded)
+            {
+                isGrounded = true;
+                audioSource.PlayOneShot(landSound);
+            }
         }
     }
 
@@ -89,6 +97,7 @@ public class Player : MonoBehaviour
         {
             Vector3 jumpVelocityToAdd = new Vector3(0f, jumpSpeed, 0f);
             rigidBody.velocity += jumpVelocityToAdd;
+            audioSource.PlayOneShot(jumpSound);
         }
     }
 }

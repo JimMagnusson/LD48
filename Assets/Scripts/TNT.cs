@@ -6,13 +6,15 @@ public class TNT : MonoBehaviour
 {
     [SerializeField] private GameObject explosionParticles = null;
 
+    [SerializeField] private AudioClip explosionSFX = null;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            if(explosionParticles == null) { return; }
+            if(explosionParticles == null || explosionSFX == null) { return; }
             GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity, transform);
-            // TODO: Trigger SFX
+            GetComponent<AudioSource>().PlayOneShot(explosionSFX);
         }
     }
 }
