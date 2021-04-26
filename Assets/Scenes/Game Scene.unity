@@ -787,7 +787,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.4745098, g: 0.19215688, b: 0.41162303, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2996,8 +2996,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 2
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3201,7 +3201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 48, y: -51}
+  m_AnchoredPosition: {x: 47.999878, y: -51}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862764230
@@ -4197,6 +4197,10 @@ PrefabInstance:
     - target: {fileID: 3244677018967765693, guid: 6e7289da2a811014d9d93109aa61bd5a, type: 3}
       propertyPath: timeToReachTarget
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244677018967765693, guid: 6e7289da2a811014d9d93109aa61bd5a, type: 3}
+      propertyPath: targetYPos
+      value: -390
       objectReference: {fileID: 0}
     - target: {fileID: 3244677018967765694, guid: 6e7289da2a811014d9d93109aa61bd5a, type: 3}
       propertyPath: m_Name

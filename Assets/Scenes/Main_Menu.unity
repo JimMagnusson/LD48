@@ -511,7 +511,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToReachTarget: 0.5
-  targetYPos: 50
+  targetYPos: -380
   mainMenuIdle: {fileID: 1135862330}
   mainMenuPlay: {fileID: 1274963587}
   mainMenuQuit: {fileID: 1284361284}
