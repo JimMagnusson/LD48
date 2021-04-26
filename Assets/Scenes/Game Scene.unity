@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: timeToReachTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1198931455375202529, guid: 4bb7be17d799eb5439d6360b939e74e3, type: 3}
+      propertyPath: targetYPos
+      value: -480
+      objectReference: {fileID: 0}
     - target: {fileID: 1198931455375202542, guid: 4bb7be17d799eb5439d6360b939e74e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
