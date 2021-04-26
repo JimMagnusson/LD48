@@ -26,6 +26,8 @@ public class GameOverController : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] int scoreTextStartZeroes = 3;
 
+    public bool IsGameOver { get; private set; }
+
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
     private DepthMeter depthMeter;
@@ -58,7 +60,7 @@ public class GameOverController : MonoBehaviour
     public void ShowGameOverMenu()
     {
         MoveGameOverScreen();
-
+        IsGameOver = true;
         gameOverMenu.SetActive(true);
         gameOverIdle.enabled = true;
         gameOverRestart.enabled = false;

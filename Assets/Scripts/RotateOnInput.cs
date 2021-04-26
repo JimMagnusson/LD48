@@ -42,7 +42,6 @@ public class RotateOnInput : MonoBehaviour
 
     private void SpeedUp()
     {
-        Debug.Log("Rot speed: " + currentRotationSpeed);
         if(currentRotationSpeed <= maxRotationSpeed)
         {
             currentRotationSpeed += speedupFactor * Time.deltaTime;

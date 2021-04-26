@@ -16,6 +16,7 @@ public class PauseController : MonoBehaviour
 
     
     private LevelLoader levelLoader;
+    private GameOverController gameOverController;
     private Vector2 targetAnchorPos = Vector2.zero;
     private bool isMoving = false;
     private float t = 0;
@@ -25,11 +26,14 @@ public class PauseController : MonoBehaviour
     private void Start()
     {
         levelLoader = FindObjectOfType<LevelLoader>();
+        gameOverController = FindObjectOfType<GameOverController>();
         startAnchorPos = pauseMenu.GetComponent<RectTransform>().anchoredPosition;
+
     }
 
     void Update()
     {
+        if(gameOverController.IsGameOver) { return; }
         if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.P)) && !isPaused)
         {
             PauseGame();
