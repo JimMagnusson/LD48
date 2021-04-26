@@ -30,11 +30,11 @@ public class PauseController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.P)) && !isPaused)
         {
             PauseGame();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        else if((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.P)) && isPaused)
         {
             ResumeGame();
         }
