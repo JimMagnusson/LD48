@@ -55,7 +55,10 @@ public class Player : MonoBehaviour
         else if (other.gameObject.CompareTag("Collectible"))
         {
             Collectible collectible = other.gameObject.GetComponent<Collectible>();
-            scoreManager.AddGemToScore(collectible.GetGemType());
+            if(!collectible.IsCollected)
+            {
+                scoreManager.AddGemToScore(collectible.GetGemType());
+            }
         }
     }
 
