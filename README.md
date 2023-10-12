@@ -1,7 +1,7 @@
 # Minedeeper-Ludum Dare 48
 Play here: https://jimmagnusson.itch.io/minedeeper
 
-Ludum Dare 48 Jam entry: [https://ldjam.com/events/ludum-dare/49/wob-the-wobbly-builder](https://ldjam.com/events/ludum-dare/48/minedeeper)
+Ludum Dare 48 Jam entry: https://ldjam.com/events/ludum-dare/48/minedeeper
 
 Made in 72 hours
 
