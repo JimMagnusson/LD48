@@ -5,7 +5,7 @@ Ludum Dare 48 Jam entry: https://ldjam.com/events/ludum-dare/48/minedeeper
 
 Made in 72 hours
 
-![minedeeper](https://github.com/JimMagnusson/Minedeeper-LD48/assets/50302387/bacf8df9-56e9-4990-9669-ecd3090f5697)
+![minedeeper_gif](https://github.com/JimMagnusson/Minedeeper-LD48/assets/50302387/32ae1b46-e691-4446-886c-317ba9d76a8b)
 
 Made by: 
 
